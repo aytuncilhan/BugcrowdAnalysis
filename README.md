@@ -35,4 +35,5 @@ To identify the area of interests (respectiveley the "predefined words" to be us
 Along with the outcome of the unsupervised learning, we can also use the words obtained by Simple Freqeuncy Analysis in step 1. As a last resort, assuming Steps 1 and 2 have not produced fruitful results for our Collocation Analysis, we can always do manually scan program details focusing on program descriptions, metadata, company information etc.
 
 ### 3. What should *not* be done
-Lexical diversity or Sentiment analysis won’t make sense since most probably all will turn out neutral.
+* Lexical diversity won't make sense since we are not interested in lingustic complexity of authors.
+* Sentiment analysis won’t make sense since most probably all will turn out to be neutral.
