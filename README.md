@@ -1,9 +1,7 @@
 # Bugcrowd Platform Advertised Programs Analysis
 
 ## Step 1:
-JSON is used to retrieve data and CSV is used to write the obtained results.
-
-The site uses JSON format to read Programs data - but in batches of size 25. Each 25-sized batches are iteratively collected and the results are written in a list to be written into [bugcrowd_Programs.csv](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/master/bugcrowd_Programs.csv)
+The site uses JSON format to read Programs data but in batches of size 25. Each batch is iteratively read and the results are written into [bugcrowd_Programs.csv](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/master/bugcrowd_Programs.csv)
 
 ## Step 2 - 3: Data Analysis
 Packages used: BeautifulSoup for web scarping, Pandas for data collection
