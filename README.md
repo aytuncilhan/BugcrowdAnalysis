@@ -6,9 +6,9 @@ The site uses JSON format to read Programs data but in batches of size 25. Each 
 ## Step 2 - 3: Data Analysis
 BeautifulSoup package is used for HTML parsing and Pandas is used for data storage.
 
-The “Program Details” are stored under a div with class name “bounty-content”.
+The “Program Details” are stored under a div with class name “bounty-content”. The details of the search and filter algortihms can be found in comment blocks in the code. But simply put, once obtained the raw text including program details, regular expressions and list operations are used to find dollar amounts ruling out the false-friends.
 
-Once obtained the raw text including program details, regular expressions and list operations are used to find dollar amounts (ruling out false-friends).
+Results from this step is stored in [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl) to be read in Step 4.
 
 ## Step 4: Results
 
