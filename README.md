@@ -1,6 +1,6 @@
 # Bugcrowd Platform Advertised Programs Analysis
 
-## Step 1:
+## Step 1: Data Extraction
 The site uses JSON format to read Programs data but in batches of size 25. Each batch is iteratively read and the results are written into [bugcrowd_Programs.csv](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/master/bugcrowd_Programs.csv)
 
 ## Step 2 - 3: Data Analysis
@@ -38,5 +38,5 @@ Along with the outcome of the unsupervised learning, we can also use the words o
 As a last resort, assuming Steps 1 and 2 have not produced fruitful results for our Collocation Analysis, we can always do manually scan program details focusing on program descriptions, metadata, company information etc.
 
 ### 3. What should *not* be done
-* Lexical Diversity Analysis won't make sense since we are not interested in lingustic complexity of authors.
 * Sentiment Analysis won’t make sense since most probably all will turn out to be neutral.
+* Lexical Diversity Analysis won't make sense since we are not interested in lingustic complexity of authors.
