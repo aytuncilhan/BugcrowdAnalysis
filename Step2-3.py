@@ -145,9 +145,9 @@ def postProcess(bounties):
     # Convert string numbers to integers
     bounties = [int(numeric_string) for numeric_string in bounties]
 
-    # If list is empty (no min or max found), assign trivial solution to distinguish from identified 0 values
+    # If list is empty (no min or max found), assign 0 (which will be both Min and Max) to indicate no data
     if (not bounties): 
-        bounties.extend((-100, -200))
+        bounties = [0]
 
     # Round to nearest 1000 as asked in the assignment
     # This line is commented out since not rounding produces better results for the graphs
