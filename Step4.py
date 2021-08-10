@@ -6,23 +6,33 @@ import matplotlib.pyplot as plt
 #Schritt 4:
 def main():
 
-    readPkl = '/Users/aytuncilhan/Projects/bugcrowd_bounties.pkl'
+    # Read pickled data from
+    readPkl = '/Users/aytuncilhan/Projects/bugcrowd_bounties_v2.pkl'
+
     df = pd.read_pickle(readPkl) 
+
+    # Clean data before plotting
     df = cleanData(df)
+
+    # Retrieve Min and Max Bounty from the lists
     minB = df["MinBounty"]
     maxB = df["MaxBounty"]
 
+    # For debug
     #pd.set_option('display.max_rows', None)
     #print(df)
+
+    # Custom function to plot Histogram
     plotHistograms(minB, maxB)
 
 # Below are the custom Functions used in main
 
 def cleanData(df):
-    # Remove no data rows
+    # Removed programs which have $0 as both minimum and maximum values 
+    # (since this means no bounty data was found for this program)
     df = df[df['MaxBounty'] > 0 ]
 
-    #Reset the indexing
+    # Reset the indexing
     df.reset_index(drop=True, inplace=True)
 
     return df
