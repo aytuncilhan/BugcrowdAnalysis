@@ -16,7 +16,7 @@ Lorem ipsum dolor
 
 ## Step 5: Future Work
 
-As a future work, 
+As a future work, the following points can be considered:
 
 ### 1. Simple Frequency Analysis
 Word frequency analysis in the program descriptions can be done. This way, the following insights can be extracted:
@@ -25,14 +25,17 @@ Word frequency analysis in the program descriptions can be done. This way, the f
 
 ### 2. Collocation Analysis
 
-First spend: unsupervised ML to see top 10 topics. Depending on the result (if promising), you can go for a supervised ML.
+Collocation Analysis can be done using some "predefined words" to find out which words are mentioned together with our area of interest (the area of interest will be the "predefined words". To identify the predefined words, we can do an unsupervised machine learning.
 
-Collocation Analysis to "predefined words" can be done to find out which words are mentioned together with our area of interest (the area of interest will be the "predefined words"
+#### 2.1. Unsupervised Machine Learning
+To identify the area of interests (respectiveley the "predefined words" to be used in Collocation Analysis), we can initially do an *unsupervised machine learning* algorithm to see what word patterns come out (e.g. top 10).
 
-#### Unsupervised Machine Learning
-To identify the area of interests (respectiveley the "predefined words" to be used in Collocation Analysis), we can initially do an *unsupervised machine learning* algorithm to see what words come out.
+#### 2.2. Supervised Machine Learning
+If the resulsts from unsupervised machine learning is promising/sensible, we can go for a supervised machine learning as well.
 
-Along with the outcome of the unsupervised learning, we can also use the words obtained by Simple Freqeuncy Analysis in step 1. As a last resort, assuming Steps 1 and 2 have not produced fruitful results for our Collocation Analysis, we can always do manually scan program details focusing on program descriptions, metadata, company information etc.
+Along with the outcome of the unsupervised learning, we can also use the words obtained by Simple Freqeuncy Analysis in step 1 . 
+
+As a last resort, assuming Steps 1 and 2 have not produced fruitful results for our Collocation Analysis, we can always do manually scan program details focusing on program descriptions, metadata, company information etc.
 
 ### 3. What should *not* be done
 * Lexical Diversity Analysis won't make sense since we are not interested in lingustic complexity of authors.
