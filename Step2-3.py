@@ -14,7 +14,7 @@ def main():
     csv_location = '/Users/aytuncilhan/Projects/bugcrowd_Programs.csv'
 
     # Location to save the resulting dataframe (to be used in Step 4)
-    df_destination = '/Users/aytuncilhan/Projects/bugcrowd_bounties_v2.pkl'
+    df_destination = '/Users/aytuncilhan/Projects/bugcrowd_bounties.pkl'
     
     with open(csv_location) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')

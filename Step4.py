@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def main():
 
     # Read pickled data from
-    readPkl = '/Users/aytuncilhan/Projects/bugcrowd_bounties_v2.pkl'
+    readPkl = '/Users/aytuncilhan/Projects/bugcrowd_bounties.pkl'
 
     df = pd.read_pickle(readPkl) 
 
