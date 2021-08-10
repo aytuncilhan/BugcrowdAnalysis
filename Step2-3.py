@@ -112,7 +112,7 @@ def preProcess(line):
 
     return cleanText
 
-# Dollar sign search
+# Search for specific tags and the dollar sign
 def searchDollar(searchText):
         # Capture strings starting with '$' and ending with a non-numeric character 
         # 'k' is kept to filter out non-bounty related text ("...$20k+ has been...")
