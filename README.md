@@ -19,7 +19,12 @@ In doing so,
 * The values are not rounded to full 1000s as it distored the dataset values :grimacing:. For instance most of the Min bounty values for rounded to 0 and hence ruled out... Albeit, the line to round values is still there, just commented out:
     `bounties = [round(num,-3) for num in bounties]`
 
+There are essentially two plots to generate: *Minimum Bounty Histogram* and *Maximum Bounty Histogram* plots. But when the x-axis turns out to look nicer when plotted in log scale (as the values increase drastically even if they are all Min (or respectively Max).
 Below are the histograms generated useing matplotlib:
+Log scale in x axis | Linear scale in x axis
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
 
 ## Step 5: Future Work
 
