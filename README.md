@@ -16,7 +16,7 @@ In this step, the minimum and maximum dollar amounts obtained in step 3 are eval
 
 In doing so,
 * Removed dataframe items which have $0 as both minimum and maximum values (since this means no bounty data was found for that program).
-* The values are not rounded to full 1000s as this distorts the dataset (Albeit, the line to round values is still there, just commented out).
+* The values are not rounded to full 1000s as this distorts the dataset :grimacing: (Albeit, the line to round values is still there, just commented out).
     `bounties = [round(num,-3) for num in bounties]`
 
 Below are the histograms generated useing matplotlib:
