@@ -22,7 +22,7 @@ In doing so,
 There are essentially two plots to generate: *Minimum Bounty Histogram* and *Maximum Bounty Histogram* plots. But when the x-axis turns out to look nicer when plotted in log scale (as the values increase drastically even if they are all Min (or respectively Max).
 
 Below are the histograms generated useing matplotlib:
-Log scale in x axis | Linear scale in x axis
+Log scale in x-axis | Linear scale in x-axis
 ------------ | -------------
 ![Plot](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/a8021d809b4ec4694ebe38a05781df710e963a48/Plots/LogscaleHistograms.png) | ![Plot](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/753011a530752bba6f056d5b246da596a73ec6f1/Plots/LinearscaleHistograms.png) 
 
