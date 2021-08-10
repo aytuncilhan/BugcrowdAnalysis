@@ -33,10 +33,10 @@ Word frequency analysis in the program descriptions can be done. This way, the f
 
 Collocation Analysis can be done using some "predefined words" to find out which words are mentioned together with our area of interest (the area of interest will be the "predefined words". To identify the predefined words, we can do an unsupervised machine learning.
 
-#### 1. Unsupervised Machine Learning
+#### 2.1. Unsupervised Machine Learning 
 To identify the area of interests (respectiveley the "predefined words" to be used in Collocation Analysis), we can initially do an *unsupervised machine learning* algorithm to see what word patterns come out (e.g. top 10).
 
-#### 1. Supervised Machine Learning
+#### 2.2. Supervised Machine Learning
 If the resulsts from unsupervised machine learning is promising/sensible, we can go for a supervised machine learning as well.
 
 Along with the outcome of the unsupervised learning, we can also use the words obtained by Simple Freqeuncy Analysis in step 1 . 
