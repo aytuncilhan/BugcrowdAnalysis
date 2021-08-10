@@ -20,6 +20,7 @@ In doing so,
     `bounties = [round(num,-3) for num in bounties]`
 
 There are essentially two plots to generate: *Minimum Bounty Histogram* and *Maximum Bounty Histogram* plots. But when the x-axis turns out to look nicer when plotted in log scale (as the values increase drastically even if they are all Min (or respectively Max).
+
 Below are the histograms generated useing matplotlib:
 Log scale in x axis | Linear scale in x axis
 ------------ | -------------
