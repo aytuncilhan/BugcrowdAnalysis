@@ -24,7 +24,7 @@ There are essentially two plots to generate: *Minimum Bounty Histogram* and *Max
 Below are the histograms generated useing matplotlib:
 Log scale in x axis | Linear scale in x axis
 ------------ | -------------
-Content from cell 1 | Content from cell 2
+![Alt Text](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/a8021d809b4ec4694ebe38a05781df710e963a48/Plots/LogscaleHistograms.png) | Content from cell 2
 Content in the first column | Content in the second column
 
 ## Step 5: Future Work
