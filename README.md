@@ -1,36 +1,48 @@
 # Bugcrowd Platform Advertised Programs Analysis
 
-## Step 1:
-Packages used: json and csv
-The site uses JSON to retrieve data but in batches of size 25. 
-Parsed each batch iteratively and collected the results in a list to write in the CSV.
+## Step 1: Data Extraction
+The site uses JSON format to read Programs data but in batches of size 25. Each batch is iteratively read and the results are written into [bugcrowd_Programs.csv](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/master/bugcrowd_Programs.csv)
 
 ## Step 2 - 3: Data Analysis
-Packages used: BeautifulSoup for web scarping, Pandas for data collection
-The “Program Details” are stored under a div with class “bounty-content”.
-Remark:
-Once obtained the raw text including program details, used regular expressions to find dollar amounts. Filtered empty list elements out and converted the string matrix into an integer matrix.
+BeautifulSoup package is used for HTML parsing and Pandas is used for data storage.
+
+The “Program Details” are stored under a div with class name “bounty-content”.
+
+Once obtained the raw text including program details, regular expressions and list operations are used to find dollar amounts (ruling out false-friends).
 
 ## Step 4: Results
 
-Lorem ipsum dolor
+In this step, the minimum and maximum dollar amounts obtained in step 3 are evaluated and a graph of the frequency of the minimum and maximum dollar amounts (histogram) is created. 
+
+In doing so,
+* Removed programs which have 0 as both minimum and maximum values (since this means no bounty data was found for this program)
+* The values are not rounded to full 1000s as this distorts the dataset (Albeit, the line to round values is still there, just commented out).
+
+Below are the histograms generated useing matplotlib:
 
 ## Step 5: Future Work
 
-Word frequency analysis of company names
-Word frequency analysis of program descriptions 
- > Most of the descriptions have the word security)
- > Maybe some have “management" etc.
- > This way we find out what industries are Bugcrowd’s customers
+As a future work, the following points can be considered:
 
-Sentiment analysis won’t make sense since most probably all will turn out neutral.
+### 1. Simple Frequency Analysis
+Word frequency analysis in the program descriptions can be done. This way, the following insights can be extracted:
+* Mostly mentioned technologies in cyber security, cloud technologies, 
+* Bugcrowd’s program (or business customer) profile. E.g. "which type of industries require bugcrowd services the most?"
 
-Collatation analysis of specific words 
- > E.g. colotation analysis of the word unity: over the entire dataset you check which words this words is mentioned together.
+### 2. Collocation Analysis
 
-First spend: unsupervised ML to see top 10 topics. Depending on the result (if promising), you can go for a supervised ML.
+Collocation Analysis can be done using some "predefined words" to find out which words are mentioned together with our area of interest (the area of interest will be the "predefined words". To identify the predefined words, we can do an unsupervised machine learning.
 
-Rewards Targets
+#### 2.1. Unsupervised Machine Learning
+To identify the area of interests (respectiveley the "predefined words" to be used in Collocation Analysis), we can initially do an *unsupervised machine learning* algorithm to see what word patterns come out (e.g. top 10).
 
-If no accurate results - we can go thru the program details manually ...
-	> Title - company description etc.
+#### 2.2. Supervised Machine Learning
+If the resulsts from unsupervised machine learning is promising/sensible, we can go for a supervised machine learning as well.
+
+Along with the outcome of the unsupervised learning, we can also use the words obtained by Simple Freqeuncy Analysis in step 1 . 
+
+As a last resort, assuming Steps 1 and 2 have not produced fruitful results for our Collocation Analysis, we can always do manually scan program details focusing on program descriptions, metadata, company information etc.
+
+### 3. What should **not** be done
+* Sentiment Analysis won’t make sense since most probably all will turn out to be neutral.
+* Lexical Diversity Analysis won't make sense since we are not interested in lingustic complexity of authors.
