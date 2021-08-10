@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mtick
 
 #Schritt 4:
 def main():
@@ -39,23 +40,40 @@ def cleanData(df):
 
 def plotHistograms(minB, maxB):
 
+    # Log scale
     logbins = np.geomspace(maxB.min(), maxB.max(), 24)
 
+    # Ticker for thousand separator commas
+    fmt = '${x:,.0f}'
+    tick = mtick.StrMethodFormatter(fmt)
+
+    #Main Title for two subplots
     plt.suptitle("Min and Max Bounty Amount Histograms \n of Bugcrowd Programs", y=0.985, size=16)
+
+    # First Subplot: Histogram of Min Bounty
     plt.subplot(2, 1, 1)
+    ax = plt.subplot(2, 1, 1)
     plt.title('Histogram of Min Bounty')
-    plt.hist(minB, color='steelblue', bins=40, alpha=0.8, label='Min Bounty')
+    plt.hist(minB, color='steelblue', bins=logbins, alpha=0.8, label='Min Bounty')
+    plt.xscale('log')
     plt.xlabel('Bounty ($)')
-    plt.ylabel('Occurence Frequency')
+    ax.xaxis.set_major_formatter(tick) 
+    plt.ylabel('Occurence Count')
    
+    # Seconf Subplot: Histogram of Max Bounty
     plt.subplot(2, 1, 2)
+    ax = plt.subplot(2, 1, 2)
     plt.title('Histogram of Max Bounty')
     plt.hist(maxB, color='firebrick', bins=logbins, alpha=0.8, label='Max Bounty')
     plt.xscale('log')
     plt.xlabel('Bounty ($)')
-    plt.ylabel('Occurence Frequency')
+    ax.xaxis.set_major_formatter(tick) 
+    plt.ylabel('Occurence Count')
     plt.tight_layout()
-    plt.show()
 
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=0.8, wspace=None, hspace=0.7)
+
+    plt.show()
+    
 if __name__ == '__main__':
     main()
