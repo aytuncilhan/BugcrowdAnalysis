@@ -1,9 +1,13 @@
 # Bugcrowd Platform Advertised Programs Analysis
 
 ## Step 1: Data Extraction
+Pyhton (3.8.2) script for this step: [Step1.py](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/82085841dbb6370f643da0cc0753f98613ddeb88/Step1.py)
+
 The site uses JSON format to read Programs data but in batches of size 25. Each batch is iteratively read and the results are written into [bugcrowd_Programs.csv](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/master/bugcrowd_Programs.csv)
 
 ## Step 2 - 3: Data Analysis
+Pyhton (3.8.2) script for this step: [Step2-3.py](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/82085841dbb6370f643da0cc0753f98613ddeb88/Step2-3.py)
+
 BeautifulSoup package is used for HTML parsing and Pandas is used for data storage.
 
 The “Program Details” are stored under a div with class name “bounty-content”. The details of the search and filter algortihms can be found in comment blocks in the code. But simply put, once obtained the raw text including program details, regular expressions and list operations are used to find dollar amounts ruling out the false-friends.
@@ -11,6 +15,7 @@ The “Program Details” are stored under a div with class name “bounty-conte
 Results from this step is stored in [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl) to be read in Step 4.
 
 ## Step 4: Results
+Pyhton (3.8.2) script for this step: [Step4.py](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/82085841dbb6370f643da0cc0753f98613ddeb88/Step4.py)
 
 In this step, the minimum and maximum dollar amounts obtained in step 3 (which are stored in [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl)) is read to plot the histogram of minimum and maximum dollar amounts in bugcrowd programs. 
 
