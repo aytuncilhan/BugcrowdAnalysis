@@ -16,16 +16,17 @@ In this step, the minimum and maximum dollar amounts obtained in step 3 are eval
 
 In doing so,
 * Removed dataframe items which have $0 as both minimum and maximum values (since this means no bounty data was found for that program).
-* The values are not rounded to full 1000s as it distored the dataset values :grimacing:. For instance most of the Min bounty values for rounded to 0 and hence ruled out... Albeit, the line to round values is still there, just commented out:
+* The values are not rounded to full 1000s as it distored the dataset values: For instance most of the Min bounty values for rounded to 0 and hence ruled out... Albeit, the line to round values is still there, just commented out:
     `bounties = [round(num,-3) for num in bounties]`
 
-There are essentially two plots to generate: *Minimum Bounty Histogram* and *Maximum Bounty Histogram* plots. But when the x-axis turns out to look nicer when plotted in log scale (as the values increase drastically even if they are all Min (or respectively Max).
+There are two plots to generate: *Minimum Bounty Histogram* and *Maximum Bounty Histogram*. 
 
-Below are the histograms generated useing matplotlib:
-Log scale in x axis | Linear scale in x axis
+The plots looks nicer and more meaningful when the x-axis is plotted in log scale (since the values increase drastically even if they are all Min - or respectively all Max). However, both linear scale and log scale x-axis versions of the histograms are plotted and depicted below (In the script, I've added a scale parameter to a custom plot function to specify x-axis scale: `plotHistograms(minB, maxB, 'log')`)
+
+Below are the histograms generated using matplotlib:
+Log scale in x-axis | Linear scale in x-axis
 ------------ | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
+![Plot](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/a8021d809b4ec4694ebe38a05781df710e963a48/Plots/LogscaleHistograms.png) | ![Plot](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/753011a530752bba6f056d5b246da596a73ec6f1/Plots/LinearscaleHistograms.png) 
 
 ## Step 5: Future Work
 
