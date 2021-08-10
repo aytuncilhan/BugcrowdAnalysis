@@ -12,7 +12,7 @@ Once obtained the raw text including program details, regular expressions and li
 
 ## Step 4: Results
 
-In this step, the minimum and maximum dollar amounts obtained in step 3 are evaluated and a graph of the frequency of the minimum and maximum dollar amounts (histogram) is created. 
+In this step, the minimum and maximum dollar amounts obtained in step 3 (which are stored in [this pickle file](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl)) is read to plot the histogram of minimum and maximum dollar amounts in bugcrowd programs. 
 
 In doing so,
 * Removed dataframe items which have $0 as both minimum and maximum values (since this means no bounty data was found for that program).
