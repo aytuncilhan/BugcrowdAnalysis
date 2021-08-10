@@ -23,8 +23,9 @@ def main():
     #pd.set_option('display.max_rows', None)
     #print(df)
 
-    # Custom function to plot Histogram
-    plotHistograms(minB, maxB)
+    # Custom function to plot Histogram provifing the scale to be log
+    # Scale can be Log scale or Linear scale
+    plotHistograms(minB, maxB, 'log')
 
 # Below are the custom Functions used in main
 
@@ -38,7 +39,7 @@ def cleanData(df):
 
     return df
 
-def plotHistograms(minB, maxB):
+def plotHistograms(minB, maxB, scale):
 
     # Log scale
     logbins = np.geomspace(maxB.min(), maxB.max(), 24)
@@ -54,9 +55,12 @@ def plotHistograms(minB, maxB):
     plt.subplot(2, 1, 1)
     ax = plt.subplot(2, 1, 1)
     plt.title('Histogram of Min Bounty')
-    plt.hist(minB, color='steelblue', bins=logbins, alpha=0.8, label='Min Bounty')
-    plt.xscale('log')
-    plt.xlabel('Bounty ($)')
+    # Check if log specified. Default set to linear
+    if(scale=='log'):
+        plt.hist(minB, color='steelblue', bins=logbins, alpha=0.8, label='Min Bounty')
+        plt.xscale('log')
+    else:
+        plt.xlabel('Bounty ($)')
     ax.xaxis.set_major_formatter(tick) 
     plt.ylabel('Occurence Count')
    
@@ -64,8 +68,12 @@ def plotHistograms(minB, maxB):
     plt.subplot(2, 1, 2)
     ax = plt.subplot(2, 1, 2)
     plt.title('Histogram of Max Bounty')
-    plt.hist(maxB, color='firebrick', bins=logbins, alpha=0.8, label='Max Bounty')
-    plt.xscale('log')
+    # Check if log specified. Default set to linear
+    if(scale=='log'):
+        plt.hist(maxB, color='firebrick', bins=logbins, alpha=0.8, label='Max Bounty')
+        plt.xscale('log')
+    else:
+        plt.hist(maxB, color='firebrick', bins=24, alpha=0.8, label='Max Bounty')
     plt.xlabel('Bounty ($)')
     ax.xaxis.set_major_formatter(tick) 
     plt.ylabel('Occurence Count')
