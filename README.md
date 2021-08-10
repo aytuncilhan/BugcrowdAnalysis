@@ -21,7 +21,7 @@ In doing so,
 
 There are two plots to generate: *Minimum Bounty Histogram* and *Maximum Bounty Histogram*. 
 
-The plots looks nicer and more meaningful when the x-axis is plotted in log scale (since the values increase drastically even if they are all Min (or respectively all Max).
+The plots looks nicer and more meaningful when the x-axis is plotted in log scale (since the values increase drastically even if they are all Min - or respectively all Max). However, both linear scale and log scale x-axis versions of the histograms are plotted and depicted below (In the script, I've added a scale parameter to a custom plot function to specify x-axis scale: `plotHistograms(minB, maxB, 'log')`)
 
 Below are the histograms generated using matplotlib:
 Log scale in x-axis | Linear scale in x-axis
