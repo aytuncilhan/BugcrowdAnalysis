@@ -12,7 +12,13 @@ Once obtained the raw text including program details, regular expressions and li
 
 ## Step 4: Results
 
-Lorem ipsum dolor
+In this step, the minimum and maximum dollar amounts obtained in step 3 are evaluated and a graph of the frequency of the minimum and maximum dollar amounts (histogram) is created. 
+
+In doing so,
+Removed programs which have 0 as both minimum and maximum values (since this means no bounty data was found for this program)
+The values are not rounded to full 1000s as this distorts the dataset (Albeit, the line to round values is still there, just commented out).
+
+Below are the histograms generated useing matplotlib:
 
 ## Step 5: Future Work
 
@@ -37,6 +43,6 @@ Along with the outcome of the unsupervised learning, we can also use the words o
 
 As a last resort, assuming Steps 1 and 2 have not produced fruitful results for our Collocation Analysis, we can always do manually scan program details focusing on program descriptions, metadata, company information etc.
 
-### 3. What should *not* be done
+### 3. What should **not** be done
 * Sentiment Analysis won’t make sense since most probably all will turn out to be neutral.
 * Lexical Diversity Analysis won't make sense since we are not interested in lingustic complexity of authors.
