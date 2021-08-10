@@ -50,7 +50,7 @@ Word frequency analysis in the program descriptions can be done. This will be a 
 * Bugcrowd’s program (or business customer) profile. E.g. "which type of industries require bugcrowd services the most?"
 
 ### 3. Manual Scan
-As a last resort, assuming items 1 and 2 have not produced fruitful results, we can manually scan program details focusing on program descriptions, metadata, company information etc. to identify similarities across programs.
+As a last resort, assuming items 1 and 2 have not produced fruitful results, we can manually scan program details focusing on program descriptions, metadata, company information etc. to identify similarities and common themes across programs.
 
 ### 4. What should **not** be done
 * Sentiment Analysis won’t make sense since most probably all will turn out to be neutral.
