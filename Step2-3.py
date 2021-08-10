@@ -10,7 +10,11 @@ import pandas as pd
 #Schritt 2-3
 def main():
 
+    # Location of the csv from Step 1
     csv_location = '/Users/aytuncilhan/Projects/bugcrowd_Programs.csv'
+
+    # Location to save the resulting dataframe (to be used in Step 4)
+    df_destination = '/Users/aytuncilhan/Projects/bugcrowd_bounties_v2.pkl'
     
     with open(csv_location) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -39,9 +43,12 @@ def main():
 
             results.append([name, url, minBounty, maxBounty])
             index += 1
-        
+    
+    # Store the results in a dataframe with corresponding columns
     df = pd.DataFrame(results, columns=['Name', 'URL', 'MinBounty', 'MaxBounty'])
-    df.to_pickle('/Users/aytuncilhan/Projects/bugcrowd_bounties_v2.pkl')
+
+    # Pickle (save) the dataframe to avoid running steps 2 and 3 over and over again
+    df.to_pickle(df_destination)
 
 # Below are the custom Functions used in main
 
