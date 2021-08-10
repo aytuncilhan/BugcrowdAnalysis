@@ -19,7 +19,7 @@ In doing so,
 * The values are not rounded to full 1000s as it distored the dataset values: For instance most of the Min bounty values for rounded to 0 and hence ruled out... Albeit, the line to round values is still there, just commented out:
     `bounties = [round(num,-3) for num in bounties]`
 
-There are two plots to generate: *Minimum Bounty Histogram* and *Maximum Bounty Histogram* plots. 
+There are two plots to generate: *Minimum Bounty Histogram* and *Maximum Bounty Histogram*. 
 
 The plots looks nicer and more meaningful when the x-axis is plotted in log scale (since the values increase drastically even if they are all Min (or respectively all Max).
 
