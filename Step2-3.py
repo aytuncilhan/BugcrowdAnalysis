@@ -10,7 +10,9 @@ import pandas as pd
 #Schritt 2-3
 def main():
 
-    with open('/Users/aytuncilhan/Projects/bugcrowd_Programs.csv') as csv_file:
+    csv_location = '/Users/aytuncilhan/Projects/bugcrowd_Programs.csv'
+    
+    with open(csv_location) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         next(csv_reader) #To skip header
 
@@ -27,7 +29,7 @@ def main():
             ProgramDetails = soup.find_all('div', {'class': 'bounty-content'})
 
             # NOTE: If Step 2 and 3 should be separate, ProgramDetails can be saved in a dataframe along with
-            # the corresponding program name and URL
+            # the corresponding program name and URL. Step 3 can iteratively read from this dataframe
 
             # Step 3: Find min max dollar amounts
             [minBounty, maxBounty] = findBounty(ProgramDetails)
@@ -43,26 +45,23 @@ def main():
 
 # Below are the custom Functions used in main
 
-# Find min and max dollar amounts
+# Find min and max bounty amounts
 def findBounty(ProgramDetails):
 
     # To store the bounty amounts found in the text
     bounties = []
 
-    # In case there are more than one occurence
+    # Loop through the "lines" in ProgramDetails (in case there are more than one)
     for line in ProgramDetails:
 
-        #Pre process to clean the text
+        # Preprocess to clean the search text
         cleanText = preProcess(line)
 
-        #Search for dollar ammonuts l
+        # Find dollar ammonuts
         dollar_nums = searchDollar(cleanText)
-        other_nums = searchTag(cleanText)
 
-        # Collate results
-        dollarNums = dollar_nums + other_nums
-
-        bounties = postProcess(dollarNums)
+        # Postprocess to clean results
+        bounties = postProcess(dollar_nums)
 
     #If empty list, return debug values, else, return bounties list
     if(not bounties):
@@ -112,31 +111,24 @@ def searchDollar(searchText):
         # 'k' is kept to filter out non-bounty related text ("...$20k+ has been...")
         dollar_nums = re.findall(r"\$(.*?)[^\d]", searchText)
 
+        # All 'min&quot;:null&quot;max&quot;:null" are removed which means, "min&quot;:" will be definitely
+        # be followed by a Min bounty value (not necessarily a global Min, could be a local Min)
+        tag1_numsMin = re.findall(r"min&quot;:(.*?)[^\d]", searchText)
+        tag2_numsMin = re.findall(r"\"min\":(.*?)[^\d]", searchText)
+
+        # Also, "max&quot;:" will be definitely followed by a Max bounty value (not necessarily a global Min, 
+        # could be a local Min)
+        tag1_numsMax = re.findall(r"max&quot;:(.*?)[^\d]", searchText)
+        tag2_numsMax = re.findall(r"\"max\":(.*?)[^\d]", searchText)
+
         # To capture min 'null' tags which is 0 dollars when rendered and "Up to:" statements which also means zero
         # Also, if there is a "min&quot;:null" it definitely yields a zero value since we already
         # removed all 'min&quot;:null&quot;max&quot;:null' (which doesn;t yield a Min or Max) during preprocess
         if("min&quot;:null" in searchText or "Upto:" in searchText):
             dollar_nums.append('0') 
 
-        # Filter out non-digit char including items
-        dollar_nums = [x for x in dollar_nums if x.isdigit()]
-
-        return dollar_nums
-
-# Parse the text to identify the pre-defined Min-Max tags
-def searchTag(searchText):
-        # All 'min&quot;:null&quot;max&quot;:null" are removed which means:
-
-        # "min&quot;:" will be definitely followed by a Min bounty value (not necessarily a global Min, could be a local Min)
-        tag1_numsMin = re.findall(r"min&quot;:(.*?)[^\d]", searchText)
-        tag2_numsMin = re.findall(r"\"min\":(.*?)[^\d]", searchText)
-
-        # "max&quot;:" will be definitely followed by a Max bounty value (not necessarily a global Min, could be a local Min)
-        tag1_numsMax = re.findall(r"max&quot;:(.*?)[^\d]", searchText)
-        tag2_numsMax = re.findall(r"\"max\":(.*?)[^\d]", searchText)
-
         # Return the array of all found bounty values
-        return tag1_numsMin + tag2_numsMin + tag1_numsMax + tag2_numsMax
+        return dollar_nums + tag1_numsMin + tag2_numsMin + tag1_numsMax + tag2_numsMax
 
 # To clean the list and handle future exceptions
 def postProcess(bounties):
