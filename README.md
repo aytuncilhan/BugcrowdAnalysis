@@ -16,13 +16,13 @@ The “Program Details” are stored under a div with class name “bounty-conte
 
 2. Then, the text is cleaned to be in compliance with the search algorithms (e.g. $1.5k is converted to $1500).
 
-        ```python
+```ruby
         for item in arr:
                 # Search for prepositions coming right before the a $ amount to rule out unrelated descriptions 
                 exclude_text = ['for', 'a', 'on']
                 if('$' in item and arr[i-1] in exclude_text):
                     del arr[i]
-        ```
+```
 
 3. The search algorithm parses through the _cleaned text_ using regular expressions (searching for specific tags e.g. `tag1_numsMax = re.findall(r"max&quot;:(.*?)[^\d]", searchText)`) and other list operations to find dollar amounts while ruling out false positive cases and false negative cases.
 
