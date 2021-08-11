@@ -16,11 +16,17 @@ The “Program Details” are stored under a div with class name “bounty-conte
 
 2. Then, the text is cleaned to be in compliance with the search algorithms (e.g. $1.5k is converted to $1500).
 
+`    for item in arr:
+        # Search for prepositions coming right before the a $ amount to rule out unrelated descriptions 
+        exclude_text = ['for', 'a', 'on']
+        if('$' in item and arr[i-1] in exclude_text):
+            del arr[i]`
+
 3. The search algorithm parses through the _cleaned text_ using regular expressions (searching for specific tags e.g. `tag1_numsMax = re.findall(r"max&quot;:(.*?)[^\d]", searchText)`) and other list operations to find dollar amounts while ruling out false positive cases and false negative cases.
 
     A sample case where cleaning prevents false positives:
 
-    > The `'min&quot;:` tag occurs right before a local min (and possibly global min) bounty amount. Respectively, `"min&quot;:null"` occurence will be rendered as $0. But `'min&quot;:null&quot;max&quot;:null'` occurences are **not renedered** and only appear as placeholder tags in HTML. If `'min&quot;:null&quot;max&quot;:null'` is not removed from the search text, the search algortihm will think there is a 0$ due to the `'min&quot;: ` part wheras in reality, it's not even displayed on the page. Hence, a false positive scenario would occur.
+    > The `'min&quot;:` tag occurs right before a local min (and possibly global min) bounty amount. Respectively, `"min&quot;:null"` occurence will be rendered as $0. But `'min&quot;:null&quot;max&quot;:null'` occurences are **not renedered** and only appear as placeholder tags in HTML. If `'min&quot;:null&quot;max&quot;:null'` is not removed from the search text, the search algortihm will think there is a 0$ due to the `'min&quot;: '` part wheras in reality, it's not even displayed on the page. Hence, a false positive scenario would occur.
 
     A sample case where cleaning prevents false negatives:
 
