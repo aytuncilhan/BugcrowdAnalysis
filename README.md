@@ -26,7 +26,7 @@ for item in arr:
             del arr[i]
 ```
 
-This approach can be extended to implement **removing Stopwords** which are words that don't contribute to the meaning or substance of the text (e.g. "the", "at", "in", "on", "by", "for" etc.). 
+This approach can be extended to implement **removing Stopwords** which are words that don't contribute to the meaning or substance of the text (e.g. "the", "at", "in", "on", "by", "for" etc.). There are custom-built libraries to remove stopwords from the search text.
 
 3. The search algorithm parses through the _cleaned text_ using regular expressions (searching for specific tags e.g. `tag1_numsMax = re.findall(r"max&quot;:(.*?)[^\d]", searchText)`) and other list operations to find dollar amounts while ruling out false positive cases and false negative cases.
 
@@ -49,15 +49,15 @@ In this step, the minimum and maximum dollar amounts obtained in step 3 (which a
 
 In doing so,
 * Removed dataframe items which have $0 as both minimum and maximum values (since this means no bounty data was found for that program).
-* The values are not rounded to full 1000s as it distored the dataset values: For instance most of the Min bounty values for rounded to 0 and hence ruled out... Albeit, the line to round values is still there, just commented out:
+* The values _are not_ rounded to full 1000s since this distored the dataset values: For instance, many of the Min bounty values were are rounded to 0 since they are less then 500 and hence get ruled out... Nevertheless, the line to round values is still there, just commented out:
     `bounties = [round(num,-3) for num in bounties]`
 
-There are two plots to generate: *Minimum Bounty Histogram* and *Maximum Bounty Histogram*. 
+As required in the exercise, there are two plots to be generated: **Minimum Bounty Histogram** and **Maximum Bounty Histogram**. 
 
-The plots looks nicer and more meaningful when the x-axis is plotted in log scale (since the values increase drastically even if they are all Min - or respectively all Max). However, both linear scale and log scale x-axis versions of the histograms are plotted and depicted below (In the script, I've added a scale parameter to a custom plot function to specify x-axis scale: `plotHistograms(minB, maxB, 'log')`)
+The plots look nicer and more meaningful when the x-axis is plotted in log scale (since the values increase drastically even if they are all Min - or respectively all Max). However, both linear scale and log scale x-axis versions of the histograms are plotted and depicted below (In the script, I've added a scale parameter to a custom plot function to specify x-axis scale: `plotHistograms(minB, maxB, 'log')`)
 
 Below are the histograms generated using matplotlib:
-Log scale in x-axis | Linear scale in x-axis
+Log scale x-axis | Linear scale x-axis
 ------------ | -------------
 ![Plot](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/a8021d809b4ec4694ebe38a05781df710e963a48/Plots/LogscaleHistograms.png) | ![Plot](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/753011a530752bba6f056d5b246da596a73ec6f1/Plots/LinearscaleHistograms.png) 
 
@@ -67,7 +67,8 @@ For further analysis, the following points can be considered for
 
 ### 1. Improving Processing Speed & Efficiency
 
-Using stop words as prepositions. A similar exercise is carried out in the code.
+* Removing stop words from the search text (e.g. removing prepositions). A similar exercise is carried out in the code and explained in detail in Step 2 - 3 section above.
+* Normalizing the text using methods as Stemming (removing unnecesary suffixes) and Lemmatization (transofrming words into their root form).
 
 ### 2. Identifying Thematically Similar Blocks
 
