@@ -10,17 +10,23 @@ Pyhton (3.8.2) script for this step: [Step2-3.py](https://github.com/aytuncilhan
 
 BeautifulSoup package is used for HTML parsing and Pandas is used for data storage.
 
-The “Program Details” are stored under a div with class name “bounty-content”. The details of the search and filter algortihms can be found in comment blocks in the code. But to summarize, below is the overall procedure
+The “Program Details” are stored under a div with class name “bounty-content”. The details of the search and filter algortihms can be found in comment blocks in the code. The overall procedure is summarized below with some examples. 
+
 1. for each program, using [the CSV file obtained in Step 1](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/master/bugcrowd_Programs.csv), the text including program details is retrieved using `ProgramDetails = soup.find_all('div', {'class': 'bounty-content'})`
+
 2. Then, the text is cleaned to be in compliance with the search algorithms (e.g. $1.5k is converted to $1500).
+
+3. The search algorithm parses through the _cleaned text_ using regular expressions (searching for specific tags e.g. `tag1_numsMax = re.findall(r"max&quot;:(.*?)[^\d]", searchText)`) and other list operations to find dollar amounts while ruling out false positive cases and false negative cases.
 
     A sample case where cleaning prevents false positives:
 
     > The `'min&quot;:` tag occurs right before a local min (and possibly global min) bounty amount. Respectively, `"min&quot;:null"` occurence will be rendered as $0. But `'min&quot;:null&quot;max&quot;:null'` occurences are **not renedered** and only appear as placeholder tags in HTML. If `'min&quot;:null&quot;max&quot;:null'` is not removed from the search text, the search algortihm will think there is a 0$ due to the `'min&quot;: ` part wheras in reality, it's not even displayed on the page. Hence, a false positive scenario would occur.
 
-3. The search algorithm parses through the _cleaned text_ using regular expressions (searching for specific tags e.g. `tag1_numsMax = re.findall(r"max&quot;:(.*?)[^\d]", searchText)`) and other list operations to find dollar amounts while ruling out false positive cases and false negative cases.
+    A sample case where cleaning prevents false negatives:
 
-4. Results are stored in [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl) to be read in Step 4.
+    > The `'min&quot;:` tag occurs right before a local min (and possibly global min) bounty amount. Respectively, `"min&quot;:null"` occurence will be rendered as $0. But `'min&quot;:null&quot;max&quot;:null'` occurences are **not renedered** and only appear as placeholder tags in HTML. If `'min&quot;:null&quot;max&quot;:null'` is not removed from the search text, the search algortihm will think there is a 0$ due to the `'min&quot;: ` part wheras in reality, it's not even displayed on the page. Hence, a false positive scenario would occur.
+
+4. All the retrieved dollar amounts (bounties) are stored in a list. Minimum value in the list is the minimum bounty of the program and the same logic applies for maximum bounty Each program's name, url, min bounty, and max bounty values are stored in a Pandas dataframe [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl) to be read in [Step 4](#Step 4: Results).
 
 ## Step 4: Results
 Pyhton (3.8.2) script for this step: [Step4.py](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/82085841dbb6370f643da0cc0753f98613ddeb88/Step4.py)
