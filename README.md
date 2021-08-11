@@ -26,7 +26,7 @@ The “Program Details” are stored under a div with class name “bounty-conte
 
     > The `'min&quot;:` tag occurs right before a local min (and possibly global min) bounty amount. Respectively, `"min&quot;:null"` occurence will be rendered as $0. But `'min&quot;:null&quot;max&quot;:null'` occurences are **not renedered** and only appear as placeholder tags in HTML. If `'min&quot;:null&quot;max&quot;:null'` is not removed from the search text, the search algortihm will think there is a 0$ due to the `'min&quot;: ` part wheras in reality, it's not even displayed on the page. Hence, a false positive scenario would occur.
 
-4. All the retrieved dollar amounts (bounties) are stored in a list. Minimum value in the list is the minimum bounty of the program and the same logic applies for maximum bounty Each program's name, url, min bounty, and max bounty values are stored in a Pandas dataframe [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl) to be read in [Step 4](#Step 4: Results). [text goes here](#Step 5: Future Work)
+4. All the retrieved dollar amounts (bounties) are stored in a list. Minimum value in the list is the minimum bounty of the program and the same logic applies for maximum bounty Each program's name, url, min bounty, and max bounty values are stored in a Pandas dataframe [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl) to be read in Step 4.
           section_title<a name="Step 5: Future Work"></a>    
 
 
@@ -55,23 +55,19 @@ For further analysis, the following points can be considered:
 
 ### 1. Collocation Analysis
 
-Collocation Analysis can be done using some "predefined words/phrases" to find out which words are mentioned together with these predefined words and hence obtain thematically similar blocks. To identify these "predefined words", we can use unsupervised machine learning.
+Collocation Analysis can be done using some "predefined words/phrases" to find out which words are mentioned together with these predefined words. This way, thematically similar blocks can be clustered. 
 
-#### 1.1. Unsupervised Machine Learning 
-To identify the area of interests (respectiveley the "predefined words" to be used in Collocation Analysis), we run an unsupervised machine learning algorithm and analyse the resulting patterns. 
+To identify these "predefined words", unsupervised machine learning can be used. This way, we obtain naturally existing patterns and analyse the results to see if the they are sensible. If the resulsts from unsupervised machine learning is promising, we can go for a supervised machine learning as well.
 
-#### 1.2. Supervised Machine Learning
-If the resulsts from unsupervised machine learning is promising/sensible, we can go for a supervised machine learning as well.
-
-Along with the outcome of the unsupervised learning, we can also use the words obtained by Simple Freqeuncy Analysis (see item 2 below). 
+In addition to unsupervised machine learning, we can also do a Simple Freqeuncy Analysis to see which themes/topics are mostly mentioned in the descriptions.
 
 ### 2. Simple Frequency Analysis
-Word frequency analysis in the program descriptions can be done. This will be a simple (and cost effective) way to extract the following insights:
-* Mostly mentioned technologies in cyber security, cloud technologies, 
-* Bugcrowd’s program (or business customer) profile. E.g. "which type of industries require bugcrowd services the most?"
+Carrying out a word frequency analysis for the program descriptions is a simple and cost effective way to extract isnights as,
+* Mostly mentioned themes/technologies in bugcrowd customers (e.g. in areas like cyber security, cloud technologies, various business models etc.)
+* Bugcrowd’s business customer profile. More specifically, to asnwer _"which type of industries/companies require bugcrowd services the most?"_.
 
 ### 3. Manual Scan
-As a last resort, assuming items 1 and 2 have not produced fruitful results, we can manually scan program details focusing on program descriptions, metadata, company information etc. to identify similarities and common themes across programs.
+As a last resort, assuming items 1 and 2 have not produced fruitful results, we can always manually scan the program details focusing on program descriptions, the metadata as average bounty pay, company information etc. to identify similarities and common themes across different programs.
 
 ### 4. What should **not** be done
 * Sentiment Analysis won’t make sense since most probably all will turn out to be neutral.
