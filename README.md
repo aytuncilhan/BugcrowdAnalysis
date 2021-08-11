@@ -10,9 +10,11 @@ Pyhton (3.8.2) script for this step: [Step2-3.py](https://github.com/aytuncilhan
 
 BeautifulSoup package is used for HTML parsing and Pandas is used for data storage.
 
-The “Program Details” are stored under a div with class name “bounty-content”. The details of the search and filter algortihms can be found in comment blocks in the code. But simply put, once obtained the raw text including program details, regular expressions and list operations are used to find dollar amounts ruling out the false-friends.
-
-Results from this step is stored in [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl) to be read in Step 4.
+The “Program Details” are stored under a div with class name “bounty-content”. The details of the search and filter algortihms can be found in comment blocks in the code. But to summarize, below is the overall procedure
+1. for each program, using [the CSV file obtained in Step 1](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/master/bugcrowd_Programs.csv), the text including program details is retrieved using `ProgramDetails = soup.find_all('div', {'class': 'bounty-content'})`
+2. Then, the text is cleaned to be in compliance with the search algorithms (e.g. $1.5k is converted to $1500, or `'min&quot;:null&quot;max&quot;:null'` tags are removed since they are not rendered and can result in false positives). 
+3. The search algorithm parses through the _cleaned text_ using regular expressions (searching for specific tags e.g. `tag1_numsMax = re.findall(r"max&quot;:(.*?)[^\d]", searchText)`) and other list operations to find dollar amounts while ruling out false positive cases and false negative cases.
+4. Results are stored in [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl) to be read in Step 4.
 
 ## Step 4: Results
 Pyhton (3.8.2) script for this step: [Step4.py](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/82085841dbb6370f643da0cc0753f98613ddeb88/Step4.py)
