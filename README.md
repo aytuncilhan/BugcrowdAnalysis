@@ -24,7 +24,7 @@ The “Program Details” are stored under a div with class name “bounty-conte
 
     A sample case where cleaning prevents false negatives:
 
-    > There are cases where the intervals are displayed as "Up to: $100" (which mathematically means "$0 - 100$"). In this case, the search algorithm fails to add $0 to the found bounties list - hence a false negative case occurs. To handle this exception, a conditional is implemented to check if "Upto:" exists in the search text and if so, "0" is added into the found bounties list.
+    > There are cases where the intervals are displayed as "Up to: $100" (which mathematically means "$0 - 100$"). In this case, the search algorithm fails to add $0 to the found bounties list - hence a false negative case occurs. To handle this exception, a conditional is implemented to check if "Upto:" (yes, in the html text there is no space between up and to) exists in the search text and if so, "0" is added into the found bounties list.
 
 4. All the retrieved dollar amounts (bounties) are stored in a list. Minimum value in the list is the minimum bounty of the program and the same logic applies for maximum bounty Each program's name, url, min bounty, and max bounty values are stored in a Pandas dataframe [bugcrowd_bounties.pkl](https://github.com/aytuncilhan/BugcrowdAnalysis/blob/97873e93dd6ef5681f90ef336137c66a68affe90/bugcrowd_bounties.pkl) to be read in Step 4.
           section_title<a name="Step 5: Future Work"></a>    
@@ -51,9 +51,17 @@ Log scale in x-axis | Linear scale in x-axis
 
 ## Step 5: Future Work
 
-For further analysis, the following points can be considered:
+For further analysis, the following points can be considered for 
 
-### 1. Collocation Analysis
+### 1. Improving Processing Speed & Efficiency
+
+Using stop words as prepositions. A similar exercise is carried out in the code.
+
+### 2. Identifying Thematically Similar Blocks
+
+To identify patterns and thematically similar blocks the following points can be considered.
+
+#### 2.1. Collocation Analysis
 
 Collocation Analysis can be done using some "predefined words/phrases" to find out which words are mentioned together with these predefined words. This way, thematically similar blocks can be clustered. 
 
@@ -61,14 +69,14 @@ To identify these "predefined words", unsupervised machine learning can be used.
 
 In addition to unsupervised machine learning, we can also do a Simple Freqeuncy Analysis to see which themes/topics are mostly mentioned in the descriptions.
 
-### 2. Simple Frequency Analysis
+#### 2.2. Simple Frequency Analysis
 Carrying out a word frequency analysis for the program descriptions is a simple and cost effective way to extract isnights as,
 * Mostly mentioned themes/technologies in bugcrowd customers (e.g. in areas like cyber security, cloud technologies, various business models etc.)
 * Bugcrowd’s business customer profile. More specifically, to asnwer _"which type of industries/companies require bugcrowd services the most?"_.
 
-### 3. Manual Scan
+### 2.3. Manual Scan
 As a last resort, assuming items 1 and 2 have not produced fruitful results, we can always manually scan the program details focusing on program descriptions, the metadata as average bounty pay, company information etc. to identify similarities and common themes across different programs.
 
-### 4. What should **not** be done
+### 3. Bonus: What should **not** be done
 * Sentiment Analysis won’t make sense since most probably all will turn out to be neutral.
 * Lexical Diversity Analysis won't make sense since we are not interested in lingustic complexity of authors.
