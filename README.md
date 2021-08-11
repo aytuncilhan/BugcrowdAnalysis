@@ -16,13 +16,17 @@ The “Program Details” are stored under a div with class name “bounty-conte
 
 2. Then, the text is cleaned to be in compliance with the search algorithms (e.g. $1.5k is converted to $1500).
 
+Below is the code piece where the search text is cleaned from some prepositions since they cause false positives. There are instances where there might be non-bounty related descriptions in the text including the $ symbol and a number which is picked up by the search algorithm. These non-bounty related dollar amounts usually come after prepositions. Hence, removing prepositions from the text solves the issue of finding false positive bounty numbers.
+
 ```python
 for item in arr:
-        # Search for prepositions coming right before the a $ amount to rule out unrelated descriptions 
+        # Search for prepositions coming right before a $ amount to rule out unrelated descriptions 
         exclude_text = ['for', 'a', 'on']
         if('$' in item and arr[i-1] in exclude_text):
             del arr[i]
 ```
+
+This approach can be extended to implement **removing Stopwords** which are words that don't contribute to the meaning or substance of the text (e.g. "the", "at", "in", "on", "by", "for" etc.). 
 
 3. The search algorithm parses through the _cleaned text_ using regular expressions (searching for specific tags e.g. `tag1_numsMax = re.findall(r"max&quot;:(.*?)[^\d]", searchText)`) and other list operations to find dollar amounts while ruling out false positive cases and false negative cases.
 
