@@ -87,7 +87,7 @@ Carrying out a word frequency analysis for the program descriptions is a simple 
 * Mostly mentioned themes/technologies in bugcrowd customers (e.g. in areas like cyber security, cloud technologies, various business models etc.)
 * Bugcrowd’s business customer profile. More specifically, to asnwer _"which type of industries/companies require bugcrowd services the most?"_.
 
-### 2.3. Manual Scan
+#### 2.3. Manual Scan
 As a last resort, assuming items 1 and 2 have not produced fruitful results, we can always manually scan the program details focusing on program descriptions, the metadata as average bounty pay, company information etc. to identify similarities and common themes across different programs.
 
 ### 3. Bonus: What should **not** be done
